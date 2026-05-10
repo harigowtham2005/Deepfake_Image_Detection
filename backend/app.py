@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 from PIL import Image
 import cv2
 from mtcnn import MTCNN
-
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 # ==============================
 # CONFIG
 # ==============================
@@ -28,7 +28,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # LOAD MODEL + FACE DETECTOR
 # ==============================
 model = tf.keras.models.load_model(MODEL_PATH)
-detector = MTCNN()
+detector = MTCNN(device="CPU:0")
 
 # ==============================
 # CHECK FILE TYPE
