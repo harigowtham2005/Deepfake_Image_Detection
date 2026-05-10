@@ -10,8 +10,9 @@ from mtcnn import MTCNN
 # ==============================
 # CONFIG
 # ==============================
-MODEL_PATH = "models/deepfake_model.h5"
-UPLOAD_FOLDER = "static/uploads"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "..", "models", "deepfake_model.h5")
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "static", "uploads")
 IMG_SIZE = 224
 
 ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png"}
@@ -126,4 +127,5 @@ def index():
 # RUN SERVER
 # ==============================
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
