@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: deepfake-image-detection
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn backend.app:app
